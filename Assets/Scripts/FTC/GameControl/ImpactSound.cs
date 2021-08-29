@@ -16,21 +16,22 @@ public class ImpactSound : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(audioManager != null) {
+        if(audioManager != null && collision.gameObject.tag != "OutsideRing") {
             audioManager.playRingImpact();   
         }
 
-        if (collision.gameObject.tag == "1" || collision.gameObject.tag == "2" || collision.gameObject.tag == "3" || collision.gameObject.tag == "4")
+        if (collision.gameObject.tag == "1" || collision.gameObject.tag == "2" || collision.gameObject.tag == "3" || collision.gameObject.tag == "4" || collision.gameObject.tag == "Player")
         {
             timer = Time.realtimeSinceStartup;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "1" || collision.gameObject.tag == "2" || collision.gameObject.tag == "3" || collision.gameObject.tag == "4")
+        if (collision.gameObject.tag == "1" || collision.gameObject.tag == "2" || collision.gameObject.tag == "3" || collision.gameObject.tag == "4" || collision.gameObject.tag == "Player")
         {
-            if (Time.realtimeSinceStartup-timer >= 5.0)
+            if (Time.realtimeSinceStartup-timer >= 7.0)
             {
                 Destroy(gameObject);
             }

@@ -90,6 +90,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
+
+        robot.GetComponent<RobotController>().resetEncoders();
     }
 
     public void resetField()
@@ -237,6 +239,19 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
     }
 
+    public void changeFieldSettings(string gameType = "auto", string fieldSetup = "Random", int startingPos = 0, int camSetup = 0)
+    {
+        MultiplayerSetting.multiplayerSetting.setGameType(gameType);
+        gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+
+        MultiplayerSetting.multiplayerSetting.setFieldSetup(fieldSetup);
+        resetField();
+
+        MultiplayerSetting.multiplayerSetting.setCamSetup(camSetup);
+        camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
+
+        robot.GetComponent<RobotController>().setStartPosition(spawnPositions[startingPos].transform);
+    }
 
     // Update is called once per frame
     void Update()

@@ -15,11 +15,11 @@ public class MultiplayerSetting : MonoBehaviour
     public int[] camSetupOptions;
 
     // Game Settings
-    private string gameType;
-    private int gameTypeInd;
-    private string fieldSetup;
-    private int fieldSetupInd;
-    private int camSetup;
+    private string gameType = "freeplay";
+    private int gameTypeInd = 0;
+    private string fieldSetup = "Random";
+    private int fieldSetupInd = 0;
+    private int camSetup = 0;
 
     public GameObject[] spawnPositions;
     private GameObject[] currentSpawnPositions = new GameObject[4];
@@ -39,6 +39,11 @@ public class MultiplayerSetting : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void setGameType(string type)
+    {
+        gameType = type;
     }
 
     public void setGameTypeLeft()
@@ -71,6 +76,11 @@ public class MultiplayerSetting : MonoBehaviour
         Debug.Log(gameType);
     }
 
+    public void setFieldSetup(string setup)
+    {
+        fieldSetup = setup;
+    }
+
     public void setFieldSetupLeft()
     {
         fieldSetupInd--;
@@ -99,6 +109,11 @@ public class MultiplayerSetting : MonoBehaviour
         }
         fieldSetup = fieldSetupOptions[fieldSetupInd];
         Debug.Log(fieldSetup);
+    }
+
+    public void setCamSetup(int setup)
+    {
+        camSetup = setup;
     }
 
     public void setCamSetupLeft()
