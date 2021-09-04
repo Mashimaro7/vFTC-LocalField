@@ -6,6 +6,8 @@ public class MultiplayerSetting : MonoBehaviour
 {
     public static MultiplayerSetting multiplayerSetting;
 
+    public string version = "";
+
     public bool delayStart;
 
     public int mutliplayerScene;
@@ -39,6 +41,11 @@ public class MultiplayerSetting : MonoBehaviour
             }
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public string getUnityVersion()
+    {
+        return version;
     }
 
     public void setGameType(string type)
